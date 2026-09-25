@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.env
+base_datos/
+*.fs
+*.fs.lock
+*.fs.index
+*.fs.tmp
