@@ -1,25 +1,21 @@
-class Obra:
+from persistent import Persistent
 
-    def __init__(
-        self,
-        id_obra,
-        titulo,
-        anio,
-        tipo,
-        tecnica,
-        artista=None
-    ):
+class Obra(Persistent):
+
+    def __init__(self, id_obra, titulo, anio, tipo, tecnica, descripcion="", artista=None, coleccion=None):
         self.id_obra = id_obra
         self.titulo = titulo
         self.anio = anio
         self.tipo = tipo
         self.tecnica = tecnica
+        self.descripcion = descripcion
         self.artista = artista
+        self.coleccion = coleccion
         self.estado = "Disponible"
-        self.ubicacion = None
+        self.sala = None
 
-    def cambiar_ubicacion(self, nueva_ubicacion):
-        self.ubicacion = nueva_ubicacion
+    def cambiar_ubicacion(self, nueva_sala):
+        self.sala = nueva_sala
 
     def prestar(self):
         if self.esta_disponible():
