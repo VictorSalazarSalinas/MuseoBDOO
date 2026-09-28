@@ -1,4 +1,6 @@
-class Artista:
+from persistent import Persistent
+
+class Artista(Persistent):
 
     def __init__(self, id_artista, nombre, nacionalidad, anio_nacimiento):
         self.id_artista = id_artista
