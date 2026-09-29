@@ -1,4 +1,6 @@
 from persistent import Persistent
+from persistent.list import PersistentList
+
 
 class Sala(Persistent):
 
@@ -7,18 +9,16 @@ class Sala(Persistent):
         self.nombre = nombre
         self.capacidad = capacidad
         self.ubicacion = ubicacion
-        self.exposiciones = []
+        self.exposiciones = PersistentList()
 
     def tiene_capacidad(self):
         return len(self.exposiciones) < self.capacidad
 
     def agregar_exposicion(self, exposicion):
-        if self.tiene_capacidad():
-            if exposicion not in self.exposiciones:
-                self.exposiciones.append(exposicion)
-                exposicion.sala = self
-                return True
+        if exposicion not in self.exposiciones and self.tiene_capacidad():
+            self.exposiciones.append(exposicion)
+            return True
         return False
 
     def __str__(self):
-        return f"Sala {self.nombre} (Capacidad: {self.capacidad})"
+        return f"{self.id_sala} - {self.nombre}"
