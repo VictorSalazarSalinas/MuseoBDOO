@@ -1,5 +1,6 @@
 from persistent import Persistent
 
+
 class Coleccion(Persistent):
 
     def __init__(self, id_coleccion, nombre, descripcion):
@@ -8,4 +9,4 @@ class Coleccion(Persistent):
         self.descripcion = descripcion
 
     def __str__(self):
-        return f"Colección: {self.nombre}"
+        return f"{self.id_coleccion} - {self.nombre}"

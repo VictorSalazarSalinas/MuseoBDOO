@@ -1,5 +1,6 @@
 from persistent import Persistent
 
+
 class Visitante(Persistent):
 
     def __init__(self, id_visitante, nombre, institucion, contacto):
@@ -9,4 +10,4 @@ class Visitante(Persistent):
         self.contacto = contacto
 
     def __str__(self):
-        return f"Visitante: {self.nombre} ({self.institucion})"
+        return f"{self.id_visitante} - {self.nombre}"

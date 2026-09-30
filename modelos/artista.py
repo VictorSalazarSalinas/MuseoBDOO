@@ -1,5 +1,6 @@
 from persistent import Persistent
 
+
 class Artista(Persistent):
 
     def __init__(self, id_artista, nombre, nacionalidad, anio_nacimiento):
@@ -9,4 +10,4 @@ class Artista(Persistent):
         self.anio_nacimiento = anio_nacimiento
 
     def __str__(self):
-        return f"{self.nombre} ({self.nacionalidad})"
+        return f"{self.id_artista} - {self.nombre}"
