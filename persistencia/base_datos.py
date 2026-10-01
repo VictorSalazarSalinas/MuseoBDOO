@@ -12,25 +12,29 @@ class BaseDatos:
         self.conexion = self.db.open()
         self.root = self.conexion.root()
 
-        if "artistas" not in self.root:
+        self.inicializar_contenedores()
+
+    def inicializar_contenedores(self):
+
+        if not hasattr(self.root, "artistas"):
             self.root.artistas = PersistentMapping()
 
-        if "obras" not in self.root:
+        if not hasattr(self.root, "obras"):
             self.root.obras = PersistentMapping()
 
-        if "colecciones" not in self.root:
+        if not hasattr(self.root, "colecciones"):
             self.root.colecciones = PersistentMapping()
 
-        if "exposiciones" not in self.root:
+        if not hasattr(self.root, "exposiciones"):
             self.root.exposiciones = PersistentMapping()
 
-        if "salas" not in self.root:
+        if not hasattr(self.root, "salas"):
             self.root.salas = PersistentMapping()
 
-        if "prestamos" not in self.root:
+        if not hasattr(self.root, "prestamos"):
             self.root.prestamos = PersistentMapping()
 
-        if "visitantes" not in self.root:
+        if not hasattr(self.root, "visitantes"):
             self.root.visitantes = PersistentMapping()
 
         transaction.commit()
