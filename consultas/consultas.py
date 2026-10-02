@@ -3,7 +3,9 @@ class ConsultasMuseo:
     def __init__(self, root):
         self.root = root
 
+    # ==========================================
     # BUSQUEDAS POR ID
+    # ==========================================
 
     def buscar_obra_por_id(self, id_obra):
         return self.root.obras.get(id_obra)
@@ -11,7 +13,9 @@ class ConsultasMuseo:
     def buscar_artista_por_id(self, id_artista):
         return self.root.artistas.get(id_artista)
 
+    # ==========================================
     # LISTADOS GENERALES
+    # ==========================================
 
     def listar_obras(self):
         return list(self.root.obras.values())
@@ -28,32 +32,57 @@ class ConsultasMuseo:
     def listar_salas(self):
         return list(self.root.salas.values())
 
-    # OBRAS POR COLECCION
+    # ==========================================
+    # CONSULTA 3: OBRAS POR ARTISTA
+    # ==========================================
+
+    def listar_obras_por_artista(self, id_artista):
+        return [
+            obra
+            for obra in self.root.obras.values()
+            if obra.artista is not None
+            and obra.artista.id_artista == id_artista
+        ]
+
+    # ==========================================
+    # CONSULTA 4: OBRAS POR COLECCION
+    # ==========================================
 
     def listar_obras_por_coleccion(self, id_coleccion):
         return [
-            obra for obra in self.root.obras.values()
+            obra
+            for obra in self.root.obras.values()
             if obra.coleccion is not None
             and obra.coleccion.id_coleccion == id_coleccion
         ]
 
-    # OBRAS PRESTADAS Y DISPONIBLES
+    # ==========================================
+    # CONSULTA 5: OBRAS DISPONIBLES
+    # ==========================================
 
-    def listar_obras_prestadas(self):
+    def mostrar_obras_disponibles(self):
         return [
-            obra for obra in self.root.obras.values()
-            if obra.estado == "Prestada"
-        ]
-
-    def listar_obras_disponibles(self):
-        return [
-            obra for obra in self.root.obras.values()
+            obra
+            for obra in self.root.obras.values()
             if obra.estado == "Disponible"
         ]
 
-    # OBRAS DE UNA EXPOSICION
+    # ==========================================
+    # CONSULTA 6: OBRAS PRESTADAS
+    # ==========================================
 
-    def listar_obras_por_exposicion(self, id_exposicion):
+    def mostrar_obras_prestadas(self):
+        return [
+            obra
+            for obra in self.root.obras.values()
+            if obra.estado == "Prestada"
+        ]
+
+    # ==========================================
+    # CONSULTA 7: OBRAS DE UNA EXPOSICION
+    # ==========================================
+
+    def mostrar_obras_de_exposicion(self, id_exposicion):
         exposicion = self.root.exposiciones.get(id_exposicion)
 
         if exposicion is None:
@@ -61,7 +90,9 @@ class ConsultasMuseo:
 
         return list(exposicion.obras)
 
+    # ==========================================
     # EXPOSICIONES ACTIVAS
+    # ==========================================
 
     def listar_exposiciones_activas(self, fecha_actual):
         return [
@@ -70,16 +101,21 @@ class ConsultasMuseo:
             if exposicion.esta_activa(fecha_actual)
         ]
 
+    # ==========================================
     # OBRAS POR SALA
+    # ==========================================
 
     def listar_obras_por_sala(self, id_sala):
         return [
-            obra for obra in self.root.obras.values()
+            obra
+            for obra in self.root.obras.values()
             if obra.sala is not None
             and obra.sala.id_sala == id_sala
         ]
 
+    # ==========================================
     # OBRAS SIN EXPOSICION
+    # ==========================================
 
     def listar_obras_sin_exposicion(self):
         obras_expuestas = set()
@@ -89,11 +125,14 @@ class ConsultasMuseo:
                 obras_expuestas.add(obra.id_obra)
 
         return [
-            obra for obra in self.root.obras.values()
+            obra
+            for obra in self.root.obras.values()
             if obra.id_obra not in obras_expuestas
         ]
 
+    # ==========================================
     # ESTADISTICAS DE ARTISTAS
+    # ==========================================
 
     def contar_obras_por_artista(self, id_artista):
         return sum(
@@ -124,13 +163,19 @@ class ConsultasMuseo:
             if cantidades[artista.id_artista] == maximo
         ]
 
+    # ==========================================
     # ESTADISTICAS DE COLECCIONES
+    # ==========================================
 
     def contar_obras_por_coleccion(self, id_coleccion):
-        return len(self.listar_obras_por_coleccion(id_coleccion))
+        return len(
+            self.listar_obras_por_coleccion(id_coleccion)
+        )
 
+    # ==========================================
     # CONSULTA COMPLEJA:
-    # Obras de una coleccion disponibles para exhibicion
+    # OBRAS DISPONIBLES PARA EXHIBICION
+    # ==========================================
 
     def listar_obras_disponibles_para_exhibicion(self, id_coleccion):
         return [
