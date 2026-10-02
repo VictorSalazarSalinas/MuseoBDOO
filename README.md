@@ -153,7 +153,7 @@ historial (`git log --oneline`) permite identificar qué hizo cada integrante.
 - VictorSalazarSalinas
 - Jmnsitxo
 - Mahyli
-- victor
+- Ashley 
 
 ## Autores
 
